@@ -27,7 +27,8 @@ server {
 
 
   location / {
-    root <%= @root %>;
+    #root <%= @root %>;
+    proxy_pass http://127.0.0.1:5601;
     index index.html index.htm;
     <% if @auth %>
     auth_basic "Kibana Auth";
