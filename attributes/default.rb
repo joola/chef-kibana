@@ -4,6 +4,8 @@
 default['kibana']['version'] = '2'
 #<> Kibana3 exact version
 default['kibana']['kibana3_version'] = '3.0.0'
+#<> Kibana4 exact version
+default['kibana']['kibana4_version'] = '4.0.0-beta3'
 #<> The base directory of kibana.
 default['kibana']['base_dir'] = '/opt/kibana'
 #<> The user under which Kibana is installed.
@@ -23,7 +25,9 @@ default['kibana']['git']['url'] = if node['kibana']['version'] > '2'
                                     'https://github.com/rashidkpc/kibana2.git'
                                   end
 #<> The git reference in the Kibana repository.
-default['kibana']['git']['reference'] = if node['kibana']['version'] > '2'
+default['kibana']['git']['reference'] = if node['kibana']['version'] > '3'
+                                          'master'
+                                        elsif node['kibana']['version'] > '2'
                                           'v' + node['kibana']['kibana3_version']
                                         else
                                           'v0.2.0'
